@@ -11,6 +11,15 @@ export const site = {
   address: "1800 W 68th St, Suite 101",
   city: "Hialeah, FL 33014",
   maps: "https://maps.google.com/?cid=5093181173537353298",
+  smsHref: "sms:+13059678776",
+  /**
+   * Enlace a un calendario de reservas externo (Calendly, Cal.com, Google Calendar
+   * appointment schedule…). Mientras sea `null`, el botón "Agendar" usa el
+   * calendario integrado, que prepara la solicitud para enviarla por SMS o teléfono.
+   */
+  bookingUrl: null as string | null,
+  /** Datos públicos verificados en octubre de 2026 (ver docs/INFORMACION-VERIFICADA.md). */
+  rating: { value: "4.6", count: 18 },
 };
 
 export type Locale = "es" | "en";

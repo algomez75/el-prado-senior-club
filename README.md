@@ -38,9 +38,22 @@ El ZIP del código excluye `node_modules`, cachés y Git; `npm ci` reconstruye l
 
 El despliegue inicial en Sites es **privado**. Esa privacidad impide la indexación pública. La base técnica de SEO está preparada para el lanzamiento público con dominio final y datos validados; Next.js por sí solo no garantiza posicionamiento.
 
-## Contacto: comportamiento real
+## Diseño
 
-El formulario valida nombre, teléfono, motivo y consentimiento. Prepara una consulta **en memoria del navegador**. Ofrece abrir la aplicación SMS con destino al (305) 967-8776, copiar el texto o llamar. El usuario realiza el envío final en su dispositivo. No hay base de datos, promesa de respuesta, solicitudes automáticas a un servicio externo ni almacenamiento del formulario.
+- **Estilos:** Tailwind CSS v4 (`@tailwindcss/postcss`). Los tokens de color, tipografía, sombras y movimiento están en `@theme` dentro de `src/app/globals.css`. Los componentes usan solo esos tokens.
+- **Tipografía y botones:** se conserva la identidad original. Los titulares usan Cormorant Garamond, con la segunda línea en itálica terracota, y el texto usa DM Sans con cuerpo base de 17 px. Los botones son rectangulares con esquinas de 6 px, terracota `#8A3E2D` y flecha al final.
+- **Paleta:** crema `#FDFBF7`, salvia profunda dominante, tinta azul marino, terracota y dorado apagado. Todo el texto cumple WCAG AAA (7:1 o más) sobre su fondo.
+- **Movimiento:** entrada del Hero línea a línea, cinta de valores en movimiento, parallax en fotos, revelados escalonados al hacer scroll (subida, escala y cortina), barra de progreso de lectura, botones magnéticos con brillo, pulso suave en el teléfono y preguntas frecuentes que se abren con suavidad. Todo se desactiva con `prefers-reduced-motion`, y sin JavaScript el contenido es visible desde el inicio.
+- **Paseo del Prado:** la foto que inspiró el nombre aparece como fondo del Hero, fundida con degradado. El original está en `public/images/paseoprado.png` y la web usa la versión optimizada `paseo-prado.webp`.
+- **Componentes:** secciones en `src/components/sections/`, primitivas en `src/components/ui/`, calendario en `src/components/visit-scheduler.tsx`.
+
+## Agendar visita y contacto: comportamiento real
+
+El Hero tiene dos acciones: **Agendar una visita** (calendario) y el teléfono, que además queda fijo en la barra de navegación en todos los tamaños de pantalla.
+
+El calendario integrado muestra los días laborables de las próximas tres semanas y el momento del día preferido. Valida día, momento, nombre, teléfono y consentimiento, y prepara la solicitud **en memoria del navegador**. Ofrece abrir la aplicación SMS con destino al (305) 967-8776, copiar el texto o llamar. Cambiar cualquier dato invalida la solicitud preparada para evitar enviar una fecha antigua.
+
+**Calendario externo:** si el centro usa Calendly, Cal.com u otro sistema de reservas, basta con poner su enlace en `bookingUrl` dentro de `src/lib/site.ts`. Todos los botones “Agendar” llevarán directamente a ese calendario. El usuario realiza el envío final en su dispositivo. No hay base de datos, promesa de respuesta, solicitudes automáticas a un servicio externo ni almacenamiento del formulario.
 
 **SMS no verificado:** falta confirmar si el teléfono comercial acepta mensajes. El sitio lo indica junto a la acción de SMS y ofrece llamada como alternativa.
 
