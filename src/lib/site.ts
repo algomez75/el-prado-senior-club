@@ -1,7 +1,7 @@
 export const site = {
   name: "El Prado Senior Club",
   legalName: "El Prado Senior Club Corp.",
-  url: "https://el-prado-senior-club-hialeah.alfredgf.chatgpt.site",
+  url: "https://el-prado-senior-club.vercel.app",
   phone: "(305) 967-8776",
   phoneHref: "tel:+13059678776",
   alternatePhone: "(786) 246-6519",
